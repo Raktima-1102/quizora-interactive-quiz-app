@@ -41,7 +41,7 @@ The project focuses on JavaScript functionality, responsive user interface desig
 Add screenshots of your actual application in the `screenshots` folder.
 
 ### Homepage
-![Quizora Homepage](screenshots/homepage.png)
+![Quizora Homepage]([screenshots/homepage.png](https://github.com/Raktima-1102/quizora-interactive-quiz-app/blob/main/homepage.png))
 
 ### Active Quiz
 ![Quizora Active Quiz](screenshots/active-quiz.png)
