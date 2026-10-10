@@ -4,7 +4,7 @@ Quizora is an interactive quiz web application built using HTML, CSS, and JavaSc
 
 ## 🌐 Live Demo
 
-**Live Website:** Add your deployed website URL here.
+**Live Website:** (https://raktima-1102.github.io/quizora-interactive-quiz-app/)
 
 ## 📌 Project Overview
 
