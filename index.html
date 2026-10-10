@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quizora is a fun, interactive quiz application to test your knowledge.">
+  <title>Quizora | Interactive Quiz App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="logo" onclick="showPage('home'); return false;">
+      <span class="logo-icon">Q</span> Quizora
+    </a>
+
+    <nav>
+      <button class="nav-link active" onclick="showPage('home')">Home</button>
+      <button class="nav-link" onclick="showPage('create')">Create Quiz</button>
+    </nav>
+
+    <button class="profile-button" id="profileButton" onclick="openProfile()">
+      Sign In
+    </button>
+  </header>
+
+  <main class="container">
+    <section id="homePage" class="page">
+      <div class="hero">
+        <span class="eyebrow">LEARN SOMETHING NEW</span>
+        <h1>Make learning<br>feel like <span class="gradient-text">play.</span></h1>
+        <p>Challenge yourself, explore new topics, and discover what you know with Quizora.</p>
+        <button class="primary-button" onclick="scrollToQuizzes()">
+          Explore Quizzes <span aria-hidden="true">→</span>
+        </button>
+        <div class="hero-decoration decoration-one">✦</div>
+        <div class="hero-decoration decoration-two">✳</div>
+      </div>
+
+      <section class="stats" aria-label="Quiz statistics">
+        <div><strong id="quizCount">6</strong><span>Quizzes available</span></div>
+        <div><strong>4</strong><span>Topics to explore</span></div>
+        <div><strong>∞</strong><span>Ways to learn</span></div>
+      </section>
+
+      <section class="quiz-section" id="quizSection">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">YOUR NEXT CHALLENGE</span>
+            <h2>Explore quizzes</h2>
+          </div>
+          <span class="muted" id="quizCountLabel">6 quizzes</span>
+        </div>
+
+        <div class="filter-row" aria-label="Filter quizzes by category">
+          <button class="filter-chip selected" data-category="All">All Topics</button>
+          <button class="filter-chip" data-category="Technology">Technology</button>
+          <button class="filter-chip" data-category="Science">Science</button>
+          <button class="filter-chip" data-category="Design">Design</button>
+          <button class="filter-chip" data-category="General">General Knowledge</button>
+        </div>
+
+        <div id="quizGrid" class="quiz-grid"></div>
+        <p id="emptyMessage" class="empty-message hidden">No quizzes found in this category yet.</p>
+      </section>
+    </section>
+
+    <section id="createPage" class="page hidden">
+      <div class="page-heading">
+        <span class="eyebrow">BE THE QUIZMASTER</span>
+        <h1>Create your own quiz</h1>
+        <p>Write questions, add answer choices, and challenge your friends.</p>
+      </div>
+
+      <form id="createQuizForm" class="form-card">
+        <label for="quizTitle">Quiz title</label>
+        <input id="quizTitle" name="quizTitle" type="text" maxlength="70"
+          placeholder="e.g. Introduction to JavaScript" required>
+
+        <label for="quizCategory">Category</label>
+        <select id="quizCategory" name="quizCategory" required>
+          <option value="Technology">Technology</option>
+          <option value="Science">Science</option>
+          <option value="Design">Design</option>
+          <option value="General">General Knowledge</option>
+        </select>
+
+        <label for="quizDescription">Short description</label>
+        <textarea id="quizDescription" name="quizDescription" maxlength="180"
+          placeholder="What will people learn?" required></textarea>
+
+        <div id="questionBuilder"></div>
+
+        <button type="button" class="secondary-button full-width" id="addQuestionButton">
+          + Add another question
+        </button>
+        <button type="submit" class="primary-button full-width">Publish Quiz →</button>
+        <p class="form-note">Your custom quizzes are saved in this browser.</p>
+      </form>
+    </section>
+
+    <section id="playPage" class="page hidden">
+      <button class="back-button" onclick="goHome()">← Back to quizzes</button>
+      <div class="play-header">
+        <span id="playCategory" class="category-label">TECHNOLOGY</span>
+        <span id="timer" class="timer" aria-live="polite">⏱ 20s</span>
+      </div>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <p id="questionCounter" class="muted">Question 1 of 5</p>
+      <h1 id="questionText" class="question-title">Question goes here</h1>
+      <div id="answerOptions" class="answer-options"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+      <button id="checkButton" class="primary-button full-width" disabled>
+        Check answer
+      </button>
+    </section>
+
+    <section id="resultPage" class="page hidden">
+      <div class="result-card">
+        <div class="result-icon" id="resultIcon">🏆</div>
+        <span class="eyebrow">QUIZ COMPLETED</span>
+        <h1 id="resultTitle">Great job!</h1>
+        <p id="resultMessage">You completed the quiz.</p>
+        <div class="score-circle">
+          <strong id="finalScore">0/5</strong>
+          <span>Correct answers</span>
+        </div>
+        <p id="percentageText" class="percentage-text">0% accuracy</p>
+        <div class="result-actions">
+          <button class="primary-button" onclick="retryQuiz()">Try again</button>
+          <button class="secondary-button" onclick="showPage('home')">Explore more</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#" class="logo"><span class="logo-icon">Q</span> Quizora</a>
+    <p>Made for curious minds. Keep learning, one question at a time.</p>
+    <span>© 2026 Quizora</span>
+  </footer>
+
+  <dialog id="profileDialog" class="profile-dialog">
+    <form id="profileForm">
+      <button type="button" class="dialog-close" onclick="closeProfile()" aria-label="Close">×</button>
+      <span class="eyebrow">WELCOME TO QUIZORA</span>
+      <h2>Let's get to know you</h2>
+      <p>Enter your name to personalize your quiz experience.</p>
+      <label for="userName">Your name</label>
+      <input id="userName" name="userName" type="text" maxlength="50"
+        placeholder="Enter your name" required>
+      <label for="userEmail">Email address</label>
+      <input id="userEmail" name="userEmail" type="email"
+        placeholder="you@example.com" required>
+      <button type="submit" class="primary-button full-width">Continue →</button>
+      <p class="form-note">Demo only: details stay in this browser and are not sent to a server.</p>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
