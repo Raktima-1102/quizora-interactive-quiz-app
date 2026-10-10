@@ -44,7 +44,7 @@ Add screenshots of your actual application in the `screenshots` folder.
 ![Quizora Homepage]([screenshots/homepage.png](https://github.com/Raktima-1102/quizora-interactive-quiz-app/blob/main/homepage.png))
 
 ### Active Quiz
-![Quizora Active Quiz](screenshots/active-quiz.png)
+![Quizora Active Quiz]([screenshots/active-quiz.png](https://github.com/Raktima-1102/quizora-interactive-quiz-app/blob/main/active%20quiz.png)
 
 ### Quiz Results
 ![Quizora Results]([screenshots/quiz-results.png](https://github.com/Raktima-1102/quizora-interactive-quiz-app/blob/main/score.png))
